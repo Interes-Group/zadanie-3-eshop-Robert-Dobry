@@ -11,4 +11,7 @@ public interface IProductService {
 
     Product getById(long id);
 
+    Product update(Product body, long id);
+
+
 }

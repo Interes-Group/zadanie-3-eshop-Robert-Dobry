@@ -22,7 +22,7 @@ public class Product {
 
     private String description;
 
-    private static int amount;
+    private int amount;
 
     private String unit;
 

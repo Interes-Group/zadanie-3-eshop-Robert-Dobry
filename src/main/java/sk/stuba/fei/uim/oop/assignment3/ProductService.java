@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService implements IProductService{
@@ -20,6 +19,7 @@ public class ProductService implements IProductService{
         Product p1 = new Product();
         p1.setName("Chlieb");
         p1.setDescription("Psenicny");
+        p1.setAmount(1);
         p1.setUnit("kus");
         p1.setPrice(0.35);
         this.repository.save(p1);
@@ -44,16 +44,28 @@ public class ProductService implements IProductService{
 
         return this.repository.save(product);
 
+
     }
 
     @Override
     public Product getById(long id){
 
-        Product p = this.repository.findById(id);
+         return this.repository.findById(id);
 
-        return p;
+    }
+
+    @Override
+    public Product update(Product body, long id){
+
+    this.repository.findById(id).setName(body.getName());
+    this.repository.findById(id).setDescription(body.getDescription());
+    this.repository.save(this.repository.findById(id));
+
+    return this.repository.findById(id);
 
 
     }
+
+
 
 }

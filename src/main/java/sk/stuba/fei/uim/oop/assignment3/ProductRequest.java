@@ -12,7 +12,7 @@ public class ProductRequest {
 
     private String description;
 
-    private static int amount;
+    private int amount;
 
     private String unit;
 

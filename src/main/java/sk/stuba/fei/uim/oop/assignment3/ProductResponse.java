@@ -12,7 +12,7 @@ public class ProductResponse {
 
     private String description;
 
-    private int amount = 0;
+    private int amount;
 
     private String unit;
 
@@ -23,7 +23,7 @@ public class ProductResponse {
         this.id = p.getId();
         this.name = p.getName();
         this.description = p.getDescription();
-        this.amount++;
+        this.amount = p.getAmount();
         this.unit = p.getUnit();
         this.price = p.getPrice();
 

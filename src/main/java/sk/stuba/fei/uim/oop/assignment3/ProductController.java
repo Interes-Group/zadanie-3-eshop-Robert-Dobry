@@ -52,6 +52,13 @@ public class ProductController {
 
     }
 
+    @PutMapping("/{id}")
+    public ProductResponse update(@RequestBody Product body, @PathVariable("id") long id){
+
+        return new ProductResponse(this.service.update(body, id));
+
+    }
+
 
 
 
