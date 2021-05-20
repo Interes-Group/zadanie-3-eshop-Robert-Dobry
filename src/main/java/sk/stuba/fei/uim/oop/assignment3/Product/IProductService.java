@@ -1,7 +1,6 @@
-package sk.stuba.fei.uim.oop.assignment3;
+package sk.stuba.fei.uim.oop.assignment3.Product;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface IProductService {
 
@@ -12,6 +11,10 @@ public interface IProductService {
     Product getById(long id);
 
     Product update(Product body, long id);
+
+    public void deleteProductById(long id);
+
+    public void increaseAmount(long id, int value);
 
 
 }

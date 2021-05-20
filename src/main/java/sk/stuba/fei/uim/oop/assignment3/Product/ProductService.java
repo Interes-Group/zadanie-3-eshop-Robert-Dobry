@@ -1,17 +1,18 @@
-package sk.stuba.fei.uim.oop.assignment3;
-
+package sk.stuba.fei.uim.oop.assignment3.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
 public class ProductService implements IProductService{
 
-    @Autowired
+
     private IProductRepository repository;
 
+    @Autowired
     public ProductService(IProductRepository repository){
 
         this.repository = repository;
@@ -22,6 +23,8 @@ public class ProductService implements IProductService{
         p1.setAmount(1);
         p1.setUnit("kus");
         p1.setPrice(0.35);
+        this.repository.save(p1);
+        this.repository.save(p1);
         this.repository.save(p1);
 
     }
@@ -44,7 +47,6 @@ public class ProductService implements IProductService{
 
         return this.repository.save(product);
 
-
     }
 
     @Override
@@ -57,6 +59,8 @@ public class ProductService implements IProductService{
     @Override
     public Product update(Product body, long id){
 
+
+
     this.repository.findById(id).setName(body.getName());
     this.repository.findById(id).setDescription(body.getDescription());
     this.repository.save(this.repository.findById(id));
@@ -65,6 +69,26 @@ public class ProductService implements IProductService{
 
 
     }
+
+    @Override
+    public void deleteProductById(long id){
+
+        this.repository.delete(this.repository.findById(id));
+
+
+    }
+
+    @Override
+    public void increaseAmount(long id, int value){
+
+        this.repository.findById(id).setAmount(value);
+        this.repository.save(this.repository.findById(id));
+
+
+    }
+
+
+
 
 
 
