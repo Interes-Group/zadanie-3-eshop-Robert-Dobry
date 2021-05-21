@@ -1,11 +1,9 @@
 package sk.stuba.fei.uim.oop.assignment3.Cart;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sk.stuba.fei.uim.oop.assignment3.Product.IProductService;
 import sk.stuba.fei.uim.oop.assignment3.Product.Product;
-
 import java.util.ArrayList;
 
 @Service
@@ -27,15 +25,15 @@ public class CartService implements ICartService{
     public Cart createCart(){
 
         Cart newCart = new Cart();
-        newCart.setPayed(false);
+        newCart.setPayed(false);    // pri vytvoreni kosika som defaultne nastavil payed na false,
         return this.repository.save(newCart);
 
     }
 
     @Override
-    public ArrayList<Cart> getAll(){
+    public ArrayList<Cart> getAll(){ // f na vratenie zoznamu vsetkych kosikov, pre lepsiu vyzualizaciu v postmane
 
-        return new ArrayList<Cart>(this.repository.findAll());
+        return new ArrayList<>(this.repository.findAll());
 
     }
 
@@ -59,7 +57,7 @@ public class CartService implements ICartService{
             Product product = this.productService.getById(request.getProductId());
 
 
-            if(this.repository.findById(cartId).getShoppingList().contains(product)){
+            if(this.repository.findById(cartId).getShoppingList().contains(product)){   // ak sa produkt v kosiku uz nachadza..
 
                 product.setAmount(product.getAmount() - request.getAmount());
                 this.repository.findById(cartId).increaseAmountById(request.getProductId(), request.getAmount());
@@ -69,7 +67,7 @@ public class CartService implements ICartService{
             }
 
             this.repository.findById(cartId).increasePrice((double)request.getAmount()
-                    * this.productService.getById(request.getProductId()).getPrice().doubleValue());
+                    * this.productService.getById(request.getProductId()).getPrice().doubleValue());   // navys cenu kosika o amount*price podla productId
 
             this.repository.save(this.repository.findById(cartId));
     }
@@ -82,9 +80,7 @@ public class CartService implements ICartService{
 
         this.repository.save(this.repository.findById(id));
 
-        return String.valueOf(this.repository.findById(id).getPrice());
-
-
+        return String.valueOf(this.repository.findById(id).getPrice());   // pre istotu aby sa vracial Stringos
 
     }
 

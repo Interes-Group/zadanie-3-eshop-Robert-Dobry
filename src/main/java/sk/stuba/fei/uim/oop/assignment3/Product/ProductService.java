@@ -1,10 +1,9 @@
 package sk.stuba.fei.uim.oop.assignment3.Product;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Service
 public class ProductService implements IProductService{
@@ -17,13 +16,12 @@ public class ProductService implements IProductService{
 
         this.repository = repository;
 
-
     }
 
 
     @Override
     public List<Product> getAll(){
-        return new ArrayList<Product>(this.repository.findAll());
+        return new ArrayList<>(this.repository.findAll());
     }
 
 
@@ -45,11 +43,10 @@ public class ProductService implements IProductService{
     public Product getById(long id){
 
          return this.repository.findById(id);
-
     }
 
     @Override
-    public Product update(Product body, long id){
+    public Product update(Product body, long id){  // f na PUT metodu, update info ohladom Nazov alebo Description produktu
 
         if(body.getName() != null ){
 
@@ -63,8 +60,6 @@ public class ProductService implements IProductService{
 
 
         return this.repository.findById(id);
-
-
     }
 
     @Override
@@ -72,21 +67,13 @@ public class ProductService implements IProductService{
 
         this.repository.delete(this.repository.findById(id));
 
-
     }
 
     @Override
-    public void increaseAmount(long id, int value){
+    public void increaseAmount(long id, int value){   // zvysime Amount produktu podla id
 
         this.repository.findById(id).setAmount(this.repository.findById(id).getAmount() + value);
         this.repository.save(this.repository.findById(id));
 
-
     }
-
-
-
-
-
-
 }

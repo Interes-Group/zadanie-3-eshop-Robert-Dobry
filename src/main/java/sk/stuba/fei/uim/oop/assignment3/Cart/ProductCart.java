@@ -5,11 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import sk.stuba.fei.uim.oop.assignment3.Product.Product;
 
-
-
 @Getter
 @Setter
-
 public class ProductCart {
 
     private long productId;

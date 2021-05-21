@@ -1,12 +1,10 @@
 package sk.stuba.fei.uim.oop.assignment3.Cart;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sk.stuba.fei.uim.oop.assignment3.Product.IProductService;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +28,7 @@ public class CartController {
     @PostMapping()
     public ResponseEntity<CartResponse>addCart(){
 
-        return new ResponseEntity<CartResponse>(new CartResponse(this.service.createCart()),HttpStatus.CREATED);
+        return new ResponseEntity<>(new CartResponse(this.service.createCart()),HttpStatus.CREATED);
 
     }
 
@@ -40,10 +38,10 @@ public class CartController {
 
 
         if(this.service.getById(id) == null){
-            return new ResponseEntity<CartResponse>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<CartResponse>(new CartResponse(this.service.getById(id)), HttpStatus.OK);
+        return new ResponseEntity<>(new CartResponse(this.service.getById(id)), HttpStatus.OK);
 
 
     }
@@ -91,7 +89,7 @@ public class CartController {
         CartResponse response = new CartResponse(this.service.getById(cartId));
         response.setAmountById(request.getProductId(), request.getAmount());
 
-        return new ResponseEntity<CartResponse>(response, HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
         }
 
     }
@@ -108,7 +106,7 @@ public class CartController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         else{
-            return new ResponseEntity<String>(this.service.payCartById(id), HttpStatus.OK);
+            return new ResponseEntity<>(this.service.payCartById(id), HttpStatus.OK);
         }
     }
 

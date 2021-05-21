@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
 public class ProductController {
 
 
-    private IProductService service;
+    private final IProductService service;
 
     @Autowired
     public ProductController(IProductService service){
@@ -50,9 +49,8 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        ResponseEntity<ProductResponse> re = new ResponseEntity<>(new ProductResponse(this.service.getById(id)), HttpStatus.OK);
+        return new ResponseEntity<>(new ProductResponse(this.service.getById(id)), HttpStatus.OK);
 
-        return re;
 
     }
 
@@ -91,7 +89,7 @@ public class ProductController {
         this.service.increaseAmount(id, request.getAmount());
 
 
-        return new ResponseEntity<AmountResponse>(new AmountResponse(this.service.getById(id)),HttpStatus.OK);
+        return new ResponseEntity<>(new AmountResponse(this.service.getById(id)),HttpStatus.OK);
 
 
     }
@@ -100,10 +98,10 @@ public class ProductController {
     public ResponseEntity<AmountResponse> getAmountOfProduct(@PathVariable("id") long id){
 
         if(this.service.getById(id) == null){
-            return new ResponseEntity<AmountResponse>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<AmountResponse>(new AmountResponse(this.service.getById(id)),HttpStatus.OK);
+        return new ResponseEntity<>(new AmountResponse(this.service.getById(id)),HttpStatus.OK);
 
     }
 
