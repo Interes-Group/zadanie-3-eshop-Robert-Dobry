@@ -21,9 +21,6 @@ public class CartService implements ICartService{
     public CartService(ICartRepository repository, IProductService productService ){
         this.repository = repository;
         this.productService = productService;
-        Cart c1 = new Cart();
-        c1.setPayed(false);
-        this.repository.save(c1);
 
     }
 
@@ -61,7 +58,18 @@ public class CartService implements ICartService{
 
     }
 
+    @Override
+    public void addProduct(long cartId, ProductCartRequest request){
 
+            Product product = this.productService.getById(request.getProductId());
+
+            this.repository.findById(cartId).addToList(product);
+
+            product.setAmount(product.getAmount() - request.getAmount());
+
+            this.repository.save(this.repository.findById(cartId));
+
+    }
 
 
 }

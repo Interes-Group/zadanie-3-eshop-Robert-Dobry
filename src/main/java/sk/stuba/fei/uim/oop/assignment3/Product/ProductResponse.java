@@ -16,7 +16,7 @@ public class ProductResponse {
 
     private String unit;
 
-    private double price;
+    private Number price;
 
     public ProductResponse(Product p) {
 

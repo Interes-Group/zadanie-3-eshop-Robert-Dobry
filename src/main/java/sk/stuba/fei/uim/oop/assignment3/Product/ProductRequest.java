@@ -16,5 +16,5 @@ public class ProductRequest {
 
     private String unit;
 
-    private double price;
+    private Number price;
 }

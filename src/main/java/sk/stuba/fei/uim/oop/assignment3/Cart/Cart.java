@@ -19,16 +19,36 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    private Number price;
+
     @ManyToMany
     private List<Product> shoppingList = new ArrayList<>();
 
-    private boolean payed;
 
+    private boolean payed;
 
     public boolean getPayed(){
         return this.payed;
     }
 
+    public void addToList(Product product){
+
+        this.shoppingList.add(product);
+
+    }
+
+    public Product getByProductById(long id){
+
+        for(Product p : this.shoppingList){
+
+            if(p.getId() == id){
+
+                return p;
+            }
+        }
+
+        return null;
+    }
 
 
 

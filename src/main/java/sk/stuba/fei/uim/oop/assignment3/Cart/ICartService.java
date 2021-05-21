@@ -15,6 +15,9 @@ public interface ICartService {
 
     public void deleteCartById(long id);
 
+    public void addProduct(long cartId, ProductCartRequest request);
+
+
 
 
 

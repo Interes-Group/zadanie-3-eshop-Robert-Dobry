@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public class AmountResponse {
 
-    int amount;
+    private int amount;
 
 
     public AmountResponse(Product product){

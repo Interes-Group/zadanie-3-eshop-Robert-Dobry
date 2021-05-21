@@ -68,6 +68,18 @@ public class CartController {
 
     }
 
+    @PostMapping("/{id}/add")
+    public CartResponse addToCart(@PathVariable("id") long cartId, @RequestBody ProductCartRequest request){
+
+        this.service.addProduct(cartId, request);
+
+        CartResponse response = new CartResponse(this.service.getById(cartId));
+        response.setAmountById(request.getProductId(), request.getAmount());
+
+        return response;
+
+    }
+
 
 
 }

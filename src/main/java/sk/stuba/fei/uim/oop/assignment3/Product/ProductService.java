@@ -18,14 +18,12 @@ public class ProductService implements IProductService{
         this.repository = repository;
 
         Product p1 = new Product();
-        p1.setName("Chlieb");
-        p1.setDescription("Psenicny");
-        p1.setAmount(1);
-        p1.setUnit("kus");
-        p1.setPrice(0.35);
+        p1.setName("Chleba");
+        p1.setDescription("Dobry");
+        p1.setPrice(0.1);
+        p1.setUnit("unit");
         this.repository.save(p1);
-        this.repository.save(p1);
-        this.repository.save(p1);
+
 
     }
 
@@ -44,6 +42,7 @@ public class ProductService implements IProductService{
         product.setPrice(request.getPrice());
         product.setUnit(request.getUnit());
         product.setDescription(request.getDescription());
+        product.setAmount(request.getAmount());
 
         return this.repository.save(product);
 
@@ -59,13 +58,18 @@ public class ProductService implements IProductService{
     @Override
     public Product update(Product body, long id){
 
+        if(body.getName() != null ){
+
+            this.repository.findById(id).setName(body.getName());}
+
+        if(body.getDescription() != null ){
+            this.repository.findById(id).setDescription(body.getDescription());
+            }
+
+            this.repository.save(this.repository.findById(id));
 
 
-    this.repository.findById(id).setName(body.getName());
-    this.repository.findById(id).setDescription(body.getDescription());
-    this.repository.save(this.repository.findById(id));
-
-    return this.repository.findById(id);
+        return this.repository.findById(id);
 
 
     }

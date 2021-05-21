@@ -1,24 +1,34 @@
 package sk.stuba.fei.uim.oop.assignment3.Cart;
 
+
 import lombok.Getter;
 import lombok.Setter;
 import sk.stuba.fei.uim.oop.assignment3.Product.Product;
 
+
+
 @Getter
 @Setter
-public class ProductInCart {
 
+public class ProductCart {
 
-    private long id;
+    private long productId;
+
     private int amount;
 
 
-    public ProductInCart(Product product){
+    ProductCart(Product p){
 
-        this.id = product.getId();
-        this.amount = product.getAmount();
+        this.productId = p.getId();
+        this.amount = p.getAmount();
+
+
 
     }
+
+
+
+
 
 
 
