@@ -1,7 +1,5 @@
 package sk.stuba.fei.uim.oop.assignment3.Cart;
 
-import sk.stuba.fei.uim.oop.assignment3.Product.IProductRepository;
-import sk.stuba.fei.uim.oop.assignment3.Product.Product;
 
 import java.util.List;
 
