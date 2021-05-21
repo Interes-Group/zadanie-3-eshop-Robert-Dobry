@@ -17,13 +17,6 @@ public class ProductService implements IProductService{
 
         this.repository = repository;
 
-        Product p1 = new Product();
-        p1.setName("Chleba");
-        p1.setDescription("Dobry");
-        p1.setPrice(0.1);
-        p1.setUnit("unit");
-        this.repository.save(p1);
-
 
     }
 

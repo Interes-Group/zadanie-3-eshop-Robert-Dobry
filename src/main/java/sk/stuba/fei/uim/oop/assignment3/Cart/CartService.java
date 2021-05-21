@@ -3,12 +3,10 @@ package sk.stuba.fei.uim.oop.assignment3.Cart;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sk.stuba.fei.uim.oop.assignment3.Product.IProductRepository;
 import sk.stuba.fei.uim.oop.assignment3.Product.IProductService;
 import sk.stuba.fei.uim.oop.assignment3.Product.Product;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class CartService implements ICartService{
@@ -23,9 +21,6 @@ public class CartService implements ICartService{
         this.productService = productService;
 
     }
-
-
-
 
 
     @Override
@@ -63,13 +58,28 @@ public class CartService implements ICartService{
 
             Product product = this.productService.getById(request.getProductId());
 
-            this.repository.findById(cartId).addToList(product);
+            this.repository.findById(cartId).getShoppingList().add(product);
 
             product.setAmount(product.getAmount() - request.getAmount());
 
-            this.repository.save(this.repository.findById(cartId));
+            this.repository.findById(cartId).increasePrice((double)request.getAmount()
+                    * this.productService.getById(request.getProductId()).getPrice().doubleValue());
 
+            this.repository.save(this.repository.findById(cartId));
     }
 
+
+    @Override
+    public String payCartById(long id){
+
+        this.repository.findById(id).setPayed(true);
+
+        this.repository.save(this.repository.findById(id));
+
+        return String.valueOf(this.repository.findById(id).getPrice());
+
+
+
+    }
 
 }

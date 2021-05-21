@@ -19,7 +19,7 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private Number price;
+    private double price = 0;
 
     @ManyToMany
     private List<Product> shoppingList = new ArrayList<>();
@@ -31,24 +31,15 @@ public class Cart {
         return this.payed;
     }
 
-    public void addToList(Product product){
 
-        this.shoppingList.add(product);
+    public void increasePrice(double value){
+
+        this.price += value;
 
     }
 
-    public Product getByProductById(long id){
 
-        for(Product p : this.shoppingList){
 
-            if(p.getId() == id){
-
-                return p;
-            }
-        }
-
-        return null;
-    }
 
 
 

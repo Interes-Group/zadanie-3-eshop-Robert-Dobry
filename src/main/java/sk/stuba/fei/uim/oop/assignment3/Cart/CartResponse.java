@@ -19,20 +19,14 @@ public class CartResponse {
 
     public CartResponse(Cart cart){
 
-
         this.id = cart.getId();
         this.payed = cart.getPayed();
 
         for(Product element : cart.getShoppingList()){
 
             this.shoppingList.add(new ProductCart(element));
-
         }
-
-
-
     }
-
 
     public void setAmountById(long id, int value){
 
@@ -45,4 +39,7 @@ public class CartResponse {
         }
 
     }
+
+
+
 }

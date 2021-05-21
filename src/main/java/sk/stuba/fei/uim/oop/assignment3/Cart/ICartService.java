@@ -17,7 +17,7 @@ public interface ICartService {
 
     public void addProduct(long cartId, ProductCartRequest request);
 
-
+    public String payCartById(long id);
 
 
 
