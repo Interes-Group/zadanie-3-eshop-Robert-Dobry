@@ -58,9 +58,15 @@ public class CartService implements ICartService{
 
             Product product = this.productService.getById(request.getProductId());
 
-            this.repository.findById(cartId).getShoppingList().add(product);
 
-            product.setAmount(product.getAmount() - request.getAmount());
+            if(this.repository.findById(cartId).getShoppingList().contains(product)){
+
+                product.setAmount(product.getAmount() - request.getAmount());
+                this.repository.findById(cartId).increaseAmountById(request.getProductId(), request.getAmount());
+            }else{
+                this.repository.findById(cartId).getShoppingList().add(product);
+                product.setAmount(product.getAmount() - request.getAmount());
+            }
 
             this.repository.findById(cartId).increasePrice((double)request.getAmount()
                     * this.productService.getById(request.getProductId()).getPrice().doubleValue());

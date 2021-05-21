@@ -38,6 +38,19 @@ public class Cart {
 
     }
 
+    public void increaseAmountById(long id, int value){
+
+        for(Product p : this.shoppingList){
+
+            if(p.getId() == id){
+                p.setAmount(p.getAmount() + value);
+            }
+
+
+        }
+
+    }
+
 
 
 

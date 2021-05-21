@@ -78,7 +78,7 @@ public class ProductService implements IProductService{
     @Override
     public void increaseAmount(long id, int value){
 
-        this.repository.findById(id).setAmount(value);
+        this.repository.findById(id).setAmount(this.repository.findById(id).getAmount() + value);
         this.repository.save(this.repository.findById(id));
 
 

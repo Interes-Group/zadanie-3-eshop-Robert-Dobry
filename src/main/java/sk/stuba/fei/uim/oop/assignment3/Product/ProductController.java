@@ -81,7 +81,7 @@ public class ProductController {
     }
 
     @PostMapping("/{id}/amount")
-    public ResponseEntity<ProductResponse> increaseProductAmount(@RequestBody ProductRequest request, @PathVariable("id") long id){
+    public ResponseEntity<AmountResponse> increaseProductAmount(@RequestBody ProductRequest request, @PathVariable("id") long id){
 
 
         if(this.service.getById(id) == null){
@@ -91,8 +91,7 @@ public class ProductController {
         this.service.increaseAmount(id, request.getAmount());
 
 
-        return new ResponseEntity<>(HttpStatus.OK);
-
+        return new ResponseEntity<AmountResponse>(new AmountResponse(this.service.getById(id)),HttpStatus.OK);
 
 
     }
